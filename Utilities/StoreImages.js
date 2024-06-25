@@ -42,7 +42,7 @@ const readAndStoreImages = async (directoryPath) => {
                     cafeImage: base64Image,
                 });
 
-                const saved=value.save();
+                const saved=await value.save();
                 
             });
         i=(i+1)%(files.length);
