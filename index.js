@@ -35,6 +35,7 @@ app.get("/api",(req,res)=>{
     res.status(200).json({message:"welcome back it has been a long time!!!"});
 })
 
+
 app.use("/api",login);
 app.use("/api",fetchData);
 

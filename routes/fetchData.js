@@ -63,4 +63,34 @@ app.post("/updateData",async function(req,res,next){
     res.json(JSON.stringify(result));
 })
 
+app.get("/searchCafes",async function (req,res,next){
+    const { searchName, page, limit } = req.query;
+    console.log(req.query);
+
+    const pageNum = parseInt(page, 10) || 1;
+    const limitNum = parseInt(limit, 10) || 10;
+    const skip = (pageNum - 1) * limitNum;
+
+    try {
+        // Search and paginate components
+        const cafes = await AllCafe.find({
+            cafeName: {$regex: searchName, $options: "i"} // case-insensitive search
+        })
+        .skip(skip)
+        .limit(limitNum);
+
+        // Get total number of matched components
+        const total = await AllCafe.countDocuments({
+            cafeName: {$regex: searchName, $options: "i"},
+        });
+        console.log(total);
+        res.json({
+            cafes,
+            total
+        });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
 module.exports=app;
