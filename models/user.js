@@ -27,6 +27,9 @@ const cafeSchema=mongoose.Schema({
     profileImage:{
         type:String,
     },
+    chat:{
+        type:Object,
+    },
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
     cafe:[{type:mongoose.Schema.Types.ObjectId,ref:'AllCafe'}],
 });
@@ -39,6 +42,18 @@ cafeSchema.pre("save",async function (next){
     this.gender="Not Choosen";
     const data=await fs.readFileSync(path.join(__dirname,'../imagesCafes/defaultProfilePic.jpg'));
     this.profileImage=data.toString('base64');
+    this.chat={
+        contents: [
+            {
+                parts: [
+                    {
+                        text: "Welcome to the official website of Cafe Mate"
+                    }
+                ],
+                role: "model"
+            },
+        ]
+    }
     next();    
 })
 
