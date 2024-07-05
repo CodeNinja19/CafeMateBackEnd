@@ -93,4 +93,21 @@ app.get("/searchCafes",async function (req,res,next){
     }
 })
 
+app.get("/getCafe",async function (req,res,next){
+    const {cafe_id}=req.query;
+    if (!cafe_id) next(new AppError(404,"Provide an id for the cafe!!!"));
+
+    try{
+        const currCafe=await AllCafe.findById(cafe_id);
+        if (!currCafe) next(new AppError(404,"No such Cafe Exists!!!"));
+        else {
+            res.json(JSON.stringify({resCafe:currCafe}));
+        }
+    } catch(err){
+        console.log(err);
+        next(new AppError(500,"Database is not responding!!!"));
+    }
+    
+});
+
 module.exports=app;
