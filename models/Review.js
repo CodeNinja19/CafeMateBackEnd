@@ -4,7 +4,7 @@ const reviewSchema = new mongoose.Schema({
     content: { 
         type: String, required: true 
     },
-    author: {
+    title: {
         type: String, required: true
     },
     rating: { 

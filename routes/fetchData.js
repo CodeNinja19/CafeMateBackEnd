@@ -98,10 +98,11 @@ app.get("/getCafe",async function (req,res,next){
     if (!cafe_id) next(new AppError(404,"Provide an id for the cafe!!!"));
 
     try{
-        const currCafe=await AllCafe.findById(cafe_id);
+        const currCafe=await AllCafe.findById(cafe_id).populate("reviews");
         if (!currCafe) next(new AppError(404,"No such Cafe Exists!!!"));
         else {
-            res.json(JSON.stringify({resCafe:currCafe}));
+            
+            res.json(JSON.stringify({resCafe:currCafe._doc}));
         }
     } catch(err){
         console.log(err);

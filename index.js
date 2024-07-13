@@ -11,6 +11,7 @@ const AllCafe = require("./models/AllCafe.js");
 const gemini = require("./gemini/model.js");
 const AskQuestion = require("./gemini/AskQuestion.js");
 const chatWithAi=require("./routes/chatWithAi.js");
+const postReview=require("./routes/postReview.js");
 
 
 main().catch(err => console.log(err));
@@ -41,6 +42,7 @@ app.get("/api", (req, res) => {
 app.use("/api", login);
 app.use("/api", fetchData);
 app.use("/api",chatWithAi);
+app.use("/api",postReview);
 
 let prompt = "tell me about biscuits";
 
