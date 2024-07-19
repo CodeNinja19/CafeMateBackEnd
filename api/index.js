@@ -1,15 +1,10 @@
-// api/index.js
+
 const express = require("express");
-const path = require("path");
 const cors = require("cors");
 const mongoose = require('mongoose');
-const AppError = require("../Utilities/AppError.js");
 const cookieParser = require("cookie-parser");
 const login = require("../routes/login.js");
 const fetchData = require("../routes/fetchData.js");
-const AllCafe = require("../models/AllCafe.js");
-const gemini = require("../gemini/model.js");
-const AskQuestion = require("../gemini/AskQuestion.js");
 const chatWithAi = require("../routes/chatWithAi.js");
 const postReview = require("../routes/postReview.js");
 const serverless = require('serverless-http');
