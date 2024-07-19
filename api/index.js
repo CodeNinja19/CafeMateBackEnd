@@ -41,4 +41,4 @@ app.use((err, req, res, next) => {
 });
 
 // Convert Express app to serverless function
-module.exports.handler = serverless(app);
+module.exports= serverless(app);
