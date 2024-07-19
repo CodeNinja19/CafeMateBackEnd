@@ -59,13 +59,13 @@ app.get("/getCurrentUser",async function(req,res,next){
 app.post("/updateData",async function(req,res,next){
     const data=req.body;
     const result=await User.findByIdAndUpdate(req._id,data,{returnDocument:'after'});
-    console.log(result);
+    // console.log(result);
     res.json(JSON.stringify(result));
 })
 
 app.get("/searchCafes",async function (req,res,next){
     const { searchName, page, limit } = req.query;
-    console.log(req.query);
+    // console.log(req.query);
 
     const pageNum = parseInt(page, 10) || 1;
     const limitNum = parseInt(limit, 10) || 10;
@@ -83,7 +83,7 @@ app.get("/searchCafes",async function (req,res,next){
         const total = await AllCafe.countDocuments({
             cafeName: {$regex: searchName, $options: "i"},
         });
-        console.log(total);
+        // console.log(total);
         res.json({
             cafes,
             total
