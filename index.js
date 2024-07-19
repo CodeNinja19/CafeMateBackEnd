@@ -12,12 +12,13 @@ const gemini = require("./gemini/model.js");
 const AskQuestion = require("./gemini/AskQuestion.js");
 const chatWithAi=require("./routes/chatWithAi.js");
 const postReview=require("./routes/postReview.js");
+require("dotenv").config()
 
 
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/cafes');
+    await mongoose.connect(process.env.uri);
 }
 
 
