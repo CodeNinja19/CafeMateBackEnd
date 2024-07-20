@@ -32,7 +32,7 @@ async function main() {
 
 app.use(cors(
     {
-        origin:["http://localhost:5173"],
+        origin:["http://localhost:5173","https://cafe-mate-front-end.vercel.app"],
         methods:["GET","POST"],
     }
 ));
