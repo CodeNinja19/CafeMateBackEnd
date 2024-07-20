@@ -12,6 +12,7 @@ const gemini = require("./gemini/model.js");
 const AskQuestion = require("./gemini/AskQuestion.js");
 const chatWithAi=require("./routes/chatWithAi.js");
 const postReview=require("./routes/postReview.js");
+const serverless = require('serverless-http');
 require("dotenv").config()
 
 
@@ -66,3 +67,4 @@ app.use((err, req, res, next) => {
 app.listen("4000", () => {
     console.log("All good");
 })
+
